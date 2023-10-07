@@ -33,14 +33,6 @@ class ClimaCidades(Pymongo):
             logger.error(f'{erro}')
             return {}
 
-    def buscar_clima_das_cidades(self, filtro:dict, dados:dict):
-        try:
-            cidades = list(self.conexao.find(filtro, dados))
-            return cidades
-
-        except Exception as erro:
-            logger.error(f'{erro}')
-            return []
 
     def buscar_clima_todas_cidades(self):
         try:
