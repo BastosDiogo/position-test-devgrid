@@ -3,6 +3,7 @@ import random
 import pytest
 from servicos.usuarios import Usuarios
 from servicos.conexao_weatherapi import ConexaoWeatherAPI
+from servicos.clima_cidades import ClimaCidades
 from utilidades.lista_de_cidades import lista_cidades_do_teste
 from utilidades.logger import Logger
 
@@ -103,4 +104,72 @@ class TestClass():
         usuario_teste = Usuarios()
         resultado_teste = usuario_teste.limpar_base_usuarios
 
+        assert resultado_teste == resultado_esperado
+
+
+    def test_retorna_dicionario_quando_busca_uma_cidade_na_base_de_dados(self):
+        resultado_esperado = dict
+
+        conexao_base_dados_teste = ClimaCidades()
+        conexo_api_teste = ConexaoWeatherAPI()
+        usuario_teste = Usuarios()
+
+        conexao_base_dados_teste.limpar_base_clima
+        usuario_id = usuario_teste.criar_usuario()['id']
+        index = random.randrange(0, len(lista_cidades_do_teste()))
+        cidade_id = lista_cidades_do_teste()[index]
+        dados = conexo_api_teste.buscar_temperatura_uma_cidade(cidade_id, usuario_id)
+        conexao_base_dados_teste.armazenar_dados_clima([dados])
+
+        resultado_teste = type(
+            conexao_base_dados_teste.buscar_clima_de_uma_cidade(str(cidade_id))
+        )
+        conexao_base_dados_teste.limpar_base_clima
+        assert resultado_teste == resultado_esperado
+
+
+    def test_retorna_lista_quando_busca_todas_as_cidade_na_base_de_dados(self):
+        resultado_esperado = list
+
+        conexao_base_dados_teste = ClimaCidades()
+        conexo_api_teste = ConexaoWeatherAPI()
+        usuario_teste = Usuarios()
+
+        conexao_base_dados_teste.limpar_base_clima
+        usuario_id = usuario_teste.criar_usuario()['id']
+        cidades_ids = lista_cidades_do_teste()[0:3]
+        dados = conexo_api_teste.buscar_temperatura_lista_de_cidades(
+            cidades_ids,
+            usuario_id
+        )
+        conexao_base_dados_teste.armazenar_dados_clima(dados)
+
+        resultado_teste = type(
+            conexao_base_dados_teste.buscar_clima_todas_cidades()
+        )
+        conexao_base_dados_teste.limpar_base_clima
+        assert resultado_teste == resultado_esperado
+
+
+    def test_retorna_float_representando_o_percentual_quando_usa_a_funcao_percentual(self):
+        entrada = lista_cidades_do_teste()[0:5]
+        resultado_esperado = round(5/len(lista_cidades_do_teste()),2)
+
+        conexao_base_dados_teste = ClimaCidades()
+        conexo_api_teste = ConexaoWeatherAPI()
+        usuario_teste = Usuarios()
+
+        conexao_base_dados_teste.limpar_base_clima
+        usuario_id = usuario_teste.criar_usuario()['id']
+        dados = conexo_api_teste.buscar_temperatura_lista_de_cidades(
+            entrada,
+            usuario_id
+        )
+        conexao_base_dados_teste.armazenar_dados_clima(dados)
+        resposta_funcao = conexao_base_dados_teste.percentual_armazenado()
+
+        resultado_teste = round(
+            (resposta_funcao['total_armazenados_ate_o_momento'])/(resposta_funcao['total_cidades_do_teste']),2
+        )
+        conexao_base_dados_teste.limpar_base_clima
         assert resultado_teste == resultado_esperado
