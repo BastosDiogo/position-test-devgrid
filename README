@@ -26,13 +26,13 @@ uvicorn main:app --reload
 Acesse http://localhost:8000/docs no seu navegador ou utilize uma ferramenta como Postman para testar as rotas.
 
 Endpoints:
-/clima/gerar-usuario-id: Esse endpoint gera ID de usuário necessário para utilizar TODOS os endpoints dessa aplicação.
-/clima/armazenar-temperaturas: Esse endpoint faz a consulta no endpoint da Open Weather API e armazena os dados dessa consulta, no banco de dados dessa aplicação. Vale resaltar que as cidades desejadas, estão de forma hard-code nessa aplicação.
-/clima/percentual-armazenado: Esse endpoint retorna o percentual da lista de cidades que está hard-code nessa aplicação. Ou seja, esse enpoint traz a razão entre dados armazenados e o total de cidades listados no Anexo A do teste.
-/clima/trazer-todos-dados-climaticos-armazenados: Esse endpoint retorna todos os dados armazenados após consulta no endpoint da Open Weather API.
-/clima/trazer-dados-climaticos-armazenados-cidade/{cidade_id}: Esse endpoint retorna os dados armazenados após consulta no endpoint da Open Weather API, de uma ciadade em específica.
-/resetar-dados-limpar-base-dados: Esse endpoint limpa a base de dados do onde são armazenados, os as informações após a consulta no endpoint da Open Weather API.
-/resetar-dados-aplicativo: Esse endpoint limpa a base de dados do onde são armazenados, os as informações após a consulta no endpoint da Open Weather API. Assim como os IDs de usuários criados para utilização dos endpoints dessa aplicação. Ou seja, esse endpoint reseta deixando TODAS as base de dados vazias para utilização.
+* /clima/gerar-usuario-id: Esse endpoint gera ID de usuário necessário para utilizar TODOS os endpoints dessa aplicação.
+* /clima/armazenar-temperaturas: Esse endpoint faz a consulta no endpoint da Open Weather API e armazena os dados dessa consulta, no banco de dados dessa aplicação. Vale resaltar que as cidades desejadas, estão de forma hard-code nessa aplicação.
+* /clima/percentual-armazenado: Esse endpoint retorna o percentual da lista de cidades que está hard-code nessa aplicação. Ou seja, esse enpoint traz a razão entre dados armazenados e o total de cidades listados no Anexo A do teste.
+* /clima/trazer-todos-dados-climaticos-armazenados: Esse endpoint retorna todos os dados armazenados após consulta no endpoint da Open Weather API.
+* /clima/trazer-dados-climaticos-armazenados-cidade/{cidade_id}: Esse endpoint retorna os dados armazenados após consulta no endpoint da Open Weather API, de uma ciadade em específica.
+* /resetar-dados-limpar-base-dados: Esse endpoint limpa a base de dados do onde são armazenados, os as informações após a consulta no endpoint da Open Weather API.
+* /resetar-dados-aplicativo: Esse endpoint limpa a base de dados do onde são armazenados, os as informações após a consulta no endpoint da Open Weather API. Assim como os IDs de usuários criados para utilização dos endpoints dessa aplicação. Ou seja, esse endpoint reseta deixando TODAS as base de dados vazias para utilização.
 
 Licença:
 Este projeto está licenciado sob a licença MIT - veja o arquivo LICENSE para detalhes.
