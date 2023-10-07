@@ -32,10 +32,10 @@ async def limpar_base_dados(usuario_id:str):
 
 
 @router.delete(
-    "/resetar-cenario",
+    "/resetar-dados-aplicativo",
     description=descricoes.resetar_cenario()
 )
-async def resetar_cenario_do_aplicativo(usuario_id:str):
+async def resetar_dados_aplicativo(usuario_id:str):
     usurio_na_base = usuarios.buscar_usuario(usuario_id)
     if len(usurio_na_base) == 0:
         return JSONResponse(

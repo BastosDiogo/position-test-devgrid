@@ -35,6 +35,6 @@ class Armazenar(Thread):
             if etapa_de_busca == 4:
                 break
             logger.info('Aguardando 60 segundos para nova coleta.')
-            time.sleep(60.1)
+            time.sleep(61.1)
             etapa_de_busca += 1
         logger.info(f'Coleta das {len(cidades_do_teste)} realizada.')
