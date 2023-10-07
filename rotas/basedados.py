@@ -11,7 +11,7 @@ dados_clima = ClimaCidades()
 @router.delete("/limpar-base-dados")
 async def limpar_base_dados(usuario_id:str):
     usurio_na_base = usuarios.buscar_usuario(usuario_id)
-    if usurio_na_base == None or len(usurio_na_base) == 0:
+    if len(usurio_na_base) == 0:
         return JSONResponse(
             status_code=404,
             content={

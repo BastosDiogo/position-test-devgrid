@@ -13,6 +13,14 @@ dados_clima = ClimaCidades()
 @router.get("/gerar-usuario-id")
 async def gerar_usuario_id():
     usuario_criado = usuarios.criar_usuario()
+    if len(usuario_criado) == 0:
+        return JSONResponse(
+            status_code=404,
+            content={
+                "ERRO": "Não foi possível criar um id de usuário.",
+                "mensagem": "Verifique se você está usando as variáveis de ambiente corretas."
+            }
+        )
     return JSONResponse(
         status_code=201,
         content={
@@ -27,7 +35,7 @@ async def armazenar_temperaturas_da_lista_de_cidades(
     background: BackgroundTasks
 ):
     usurio_na_base = usuarios.buscar_usuario(usuario_id)
-    if usurio_na_base == None or len(usurio_na_base) == 0:
+    if len(usurio_na_base) == 0:
         return JSONResponse(
             status_code=404,
             content={
@@ -47,7 +55,7 @@ async def armazenar_temperaturas_da_lista_de_cidades(
 @router.get("/percentual-armazenado")
 async def conferir_percentual_dos_dados_armazenado(usuario_id:str):
     usurio_na_base = usuarios.buscar_usuario(usuario_id)
-    if usurio_na_base == None or len(usurio_na_base) == 0:
+    if len(usurio_na_base) == 0:
         return JSONResponse(
             status_code=404,
             content={
@@ -62,7 +70,7 @@ async def conferir_percentual_dos_dados_armazenado(usuario_id:str):
 @router.get("/trazer-todos-dados-climaticos-armazenados")
 async def trazer_todos_dados_climaticos_armazenados(usuario_id:str):
     usurio_na_base = usuarios.buscar_usuario(usuario_id)
-    if usurio_na_base == None or len(usurio_na_base) == 0:
+    if len(usurio_na_base) == 0:
         return JSONResponse(
             status_code=404,
             content={
@@ -82,10 +90,10 @@ async def trazer_todos_dados_climaticos_armazenados(usuario_id:str):
 @router.get("/trazer-dados-climaticos-armazenados-cidade/{cidade_id}")
 async def trazer_todos_dados_climaticos_armazenados(
     usuario_id:str,
-    cidade_id:int
+    cidade_id:str
 ):
     usurio_na_base = usuarios.buscar_usuario(usuario_id)
-    if usurio_na_base == None or len(usurio_na_base) == 0:
+    if len(usurio_na_base) == 0:
         return JSONResponse(
             status_code=404,
             content={

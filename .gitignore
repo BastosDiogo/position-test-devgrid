@@ -5,3 +5,8 @@ __pycache__/
 x.py
 xxx.py
 y.py
+.coverage
+htmlcov
+.coveragerc
+tests\.pytest_cache
+tests\__init__.py

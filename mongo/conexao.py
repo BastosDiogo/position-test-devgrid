@@ -16,10 +16,17 @@ class Pymongo:
             tlsCAFile="isrgrootx1.pem",
             tlsAllowInvalidHostnames=True,
             retryWrites=False,
-            #directConnection=True
         )
         self._database = self.client[os.getenv("DATABASE_ENVIROMENT")]
 
     @property
     def database(self):
         return self._database
+
+    @property
+    def lista_colections(self):
+        try:
+            self.database.list_collection_names()
+            return True
+        except:
+            return False
