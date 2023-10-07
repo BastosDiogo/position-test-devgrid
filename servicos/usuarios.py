@@ -25,7 +25,7 @@ class Usuarios(Pymongo):
     def buscar_usuario(self, usuario_id:str):
         try:
             usuario = self.conexao.find_one({"id": usuario_id},{"_id":0})
-            return usuario
+            return {} if usuario == None else usuario
 
         except Exception as erro:
             logger.error(f'{erro}')
